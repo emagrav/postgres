@@ -11,8 +11,8 @@ public class postgres {
          
         String url = "jdbc:postgresql://localhost:5432/postgres";
         Properties props = new Properties();
-        props.setProperty("user","ele");
-        props.setProperty("password","ele");
+        props.setProperty("user","test");
+        props.setProperty("password","test");
  
         Connection conn = DriverManager.getConnection(url, props);
  
