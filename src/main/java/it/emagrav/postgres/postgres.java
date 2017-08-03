@@ -12,23 +12,13 @@ public class postgres {
 		String url = "jdbc:postgresql://localhost:5432/postgres";
 		Properties props = new Properties();
 		props.setProperty("user", "test");
-		props.setProperty("password", "tesat");
+		props.setProperty("password", "test");
 
-		Connection conn = null;
-		try {
-			conn = DriverManager.getConnection(url, props);
-			System.out.println("Test di connessione avvenuto con successo");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (conn != null) {
-					conn.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		try ( Connection conn = DriverManager.getConnection(url, props);) { 
+            System.out.println("Test di connessione avvenuto con successo");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
 	}
 
 }
