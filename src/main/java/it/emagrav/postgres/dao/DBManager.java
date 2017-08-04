@@ -11,15 +11,17 @@ import java.util.Properties;
 
 public class DBManager {
 
-	private static final String DB_PROP_FILE_NAME = "db.properties";
+//	private static final String DB_PROP_FILE_NAME = "mysql.properties";
+	private static final String DB_PROP_FILE_NAME = "postgres.properties";
+	
 	private static final String QUERY_PROP_FILE_NAME = "query.properties";
 	
+	private static final String DRIVER_NAME = "driverName";
 	private static final String HOST = "host";
 	private static final String DB_NAME = "dbName";
 	private static final String PORT = "port";
 	private static final String USER = "user";
 	private static final String PASSWORD = "password";
-	
 	private Properties dbProperties;
 	private Properties queryProperties;
 	
@@ -108,9 +110,17 @@ public class DBManager {
 		}
 	}
 
-	private String getPostgresUrl() throws DBManagerException {
-		return "jdbc:postgresql://" + getHost() + ":"
+	private String getJDBCUrl() throws DBManagerException {
+		return "jdbc:" + getJDBCDriverName() + "://" + getHost() + ":"
 				+ getPort() + "/" + getDbName();
+	}
+
+	private String getJDBCDriverName() throws DBManagerException {
+		String driverName = dbProperties.getProperty(DRIVER_NAME);
+		if (driverName==null) {
+			throw new DBManagerException("Proprietà <" + DRIVER_NAME + "> inesistente all'interno del file delle proprietà " + DB_PROP_FILE_NAME + ".");
+		}
+		return driverName;
 	}
 
 	private String getHost() throws DBManagerException  {
@@ -155,7 +165,7 @@ public class DBManager {
 
 	private Connection getConnection() throws DBManagerException {
 		try {
-			return DriverManager.getConnection(getPostgresUrl(), getUser(), getPassword());
+			return DriverManager.getConnection(getJDBCUrl(), getUser(), getPassword());
 		} catch (SQLException e) {
 			throw new DBManagerException(e);
 		}
