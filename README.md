@@ -1,7 +1,7 @@
 # postgres
 Progetto di prova per testare DB postgres
 
-# particolarit‡
+# particolarit√†
 - gestione delle eccezioni: 
 	- utilizzo eccezione personalizzata (classe DBManagerException)
 	- sempre specificata la causa delle'eccezione
@@ -11,5 +11,3 @@ Progetto di prova per testare DB postgres
 - uso del try-with-resources di Java 8
 
 - uso delle Property
-
-- 
