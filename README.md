@@ -11,3 +11,9 @@ Progetto di prova per testare DB postgres
 - uso del try-with-resources di Java 8
 
 - uso delle Property
+
+# Per lanciare il DB server (da riga di comando)
+D:\Dati\tools\pgsql\PostgresStart.bat
+
+# Per fermarlo
+D:\Dati\tools\pgsql\PostgresStop.bat
